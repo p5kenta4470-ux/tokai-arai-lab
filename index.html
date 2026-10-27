@@ -681,6 +681,19 @@ a{transition:color .18s}
     .research .rcard .rfig{margin-top:18px;max-width:100%}
     .research .rcard .rfig img{max-width:100%}
   }
+
+  /* ===== HOME Latest News: move under intro + category chip (v5.11) ===== */
+  .home-news .hn-list li{grid-template-columns:86px 84px 1fr;align-items:baseline}
+  .home-news .hn-list .cc{font-size:9.5px;font-weight:700;letter-spacing:.1em;padding:3px 8px;border-radius:3px;text-align:center;text-transform:uppercase;color:#fff;justify-self:start;line-height:1.4}
+  .home-news .hn-list .cc.p{background:var(--se)}
+  .home-news .hn-list .cc.t{background:var(--blue)}
+  .home-news .hn-list .cc.a{background:var(--gold)}
+  .home-news .hn-list .cc.g{background:#5D6B80}
+  .home-news .seeall{margin:16px 0 0}
+  @media(max-width:640px){
+    .home-news .hn-list li{grid-template-columns:62px 62px 1fr;gap:9px}
+    .home-news .hn-list .cc{font-size:9px;padding:3px 6px}
+  }
 </style>
 </head>
 <body>
@@ -751,7 +764,14 @@ a{transition:color .18s}
         <p>私たちは、生体内の<b>タンパク質の精巧な折りたたみ（フォールディング）と構造形成のしくみ</b>を、低分子の化学試薬を用いて再現し、自在に操ることを目指しています。小胞体内での<b>ジスルフィド結合の形成・組み換え</b>を担う酵素の機能を<b>人工分子（酵素ミミック）</b>で再現する研究は、タンパク質品質管理機構の解明と、機能性タンパク質の新しい生産技術につながります。インスリンなどの機能性タンパク質の<b>構造制御</b>と長期作用型アナログ創製、<b>S-to-Se戦略</b>による人工タンパク質合成へと展開しています。さらなる詳細は、<a class="link-inline" data-tab="research">Research</a>をご覧ください。</p>
       </div>
     </div>
-  </div>
+  
+
+      <div class="home-news">
+          <h3><i class="fa-solid fa-bullhorn"></i>LATEST NEWS</h3>
+          <ul class="hn-list" id="home-news-list"></ul>
+          <a class="seeall" data-tab="news">VIEW ALL NEWS <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+</div>
 
   <div class="info-strip">
     <div class="container">
@@ -782,11 +802,6 @@ a{transition:color .18s}
         </div>
       </div>
 
-      <div class="home-news">
-        <h3><i class="fa-solid fa-bullhorn"></i>Latest News</h3>
-        <a class="seeall" data-tab="news">ニュース一覧へ <i class="fa-solid fa-arrow-right"></i></a>
-        <ul class="hn-list" id="home-news-list"></ul>
-      </div>
 
       <div class="highlight">
         <i class="fa-solid fa-handshake"></i>
@@ -2021,7 +2036,7 @@ a{transition:color .18s}
     var home5 = document.getElementById('home-news-list');
     if(home5){
       home5.innerHTML = NEWS.slice(0,5).map(function(n){
-        return '<li><span class="d">'+n.d+'</span><span>'+n.t+'</span></li>';
+        return '<li><span class="d">'+n.d+'</span><span class="cc '+n.c+'">'+CATJS[n.c]+'</span><span class="b">'+n.t+'</span></li>';
       }).join('');
     }
   }
